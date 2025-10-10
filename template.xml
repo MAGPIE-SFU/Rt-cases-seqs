@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.base.evolution.alignment:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="BEAST.base v2.7.6:BDSKY v1.5.0" version="2.7">
+
+    <data
+id="template"
+spec="Alignment"
+name="alignment">
+        <sequence id="seq_01_11091_0000_01|0" spec="Sequence" taxon="01_11091_0000_01|0" totalcount="4" value="ACTGTTTCAGGGTGATCTCAGCGTTGTGCGTAATCGAAAAGTAGCAATTCCGCTTACTCCGATGCGAGCAGCTGTTTTCGGGTTAGGGGTAACTGGCATGGAAGTCATTACCCCGAGTGGTTAGCAGGCTTTGGCGCGTGGATGACCACTGCTTACGACGCTCAACTGACTCCTCATCTCCGAAGCCCCAGACTTATTTAGGTCTTAATGTCACCAATGAATGGTCCTACCGGTATTTGATGCAGAGGAAATACAAACCCGCGCGCAGTACGCCTAAGTCTACGGTTACTATCACAAGTAGATCTTAGTGAGCCAGCTCCATCTTTTCTCCAAAACATTGGACTTGAAGTGGGCCGACTAATTGTCGTGGCTGGTCTTTTTAGGAAGCCAAAGTAAACTACACCACGGAGTTCTCCCTTTCTTCTGCTCAACGAAGGTTAGACCTTCTCTGACTTGTAATCTAAGGGCGTATAAAGTGAGTATATTACGACCGCAGCCGTGTGGACATATCTCTAGACTTCGCTGACGCCGCGGTATGTTGTGTTAACTGTACTCCGAAGTGGAGTCGCGCACTGCTAACCGATAGGGAAAATCCCGCAGGCTGGCGATGCCGCCTGCTTCTCACGGTGTAAGAGCGGACCCCAGACCACTTCGTGACCTTCGGCGTTTGTCTGAATTTCGGAGATAGGGGCACCTTAACGTGAGCGGATCGCTCGGCTTGAGTGTCAATCAATCCGTCGTAAGCGTTTGTCTCAAACTCCCCGATAGATGCTACGGAAGCCCACGCGGCGCTGTCTGTACTGCGTTTCCGTCCAAGTTGCCTGTGAGACAGGGGAGGAGTGATACTCACAAGTCTCGAGGGTTTGAGGGGTGCAGGCTAGTTGCATTCCATGGCTGAACTCGTCGTCCTACTCCTTGATAGCACATCCTTAGTCCCAAACGCCTATATTCAAACATAATTTCCGCATGATACCCCCTTGTCACAGGCTAAGTCACAGGC"/>
+        <sequence id="seq_01_14442_0004_01|4" spec="Sequence" taxon="01_14442_0004_01|4" totalcount="4" value="ACTGTTTCAGGGTGATCTCAGCGTTGTGCGTAATCGAAAAGTCGCAATTCCGCTTACTCCGATGCGAGCAGCTGTTTTCGGGTTAGGGGTAACTGGCATGGAAGTCATTACCCCGAGTGGTTAGCAGGCTTTGGCGCGTGGATGACCACTGCTTACGACGCTCAACTGACTCCTCATCTCCGAAGCCCCAGACTTATTTAGGTCTTAATGTCACCAATGAATGGTTCTACCGGTATTTGATGCAGAGGAAATACAAACCCGCGCGCAGTACTCCTAAGTCTACGGTTACTATCACAAGTAGATCTTAGTGAGCCAGCTCCATCTTTTCTCCAAAACATTGGACTTGAAGTGGGCCGACTAATTGTCGTGGCTGGTCTTTTTAGGAAGCCGAAGTAAACTACACCACGGAGTTCTCCCTTTCTTCTGCTCAACGAAGGTTAGACCTTCTCTGACTTGTAATCTAAGGGCGTATAAACTGACTATATTACGACCGCAGCCGTGTGGACATACCTCTAGACTTCGATGACGCCGCGGTATGTTGTGTTAACTGTACTCCGAAGTGGAGTCGCGCACTGCTAACCGATAGGGAAAATCCCGCAGGCTGGCGATGCCGCCTGCTTCTCACGGTGTAAGAGCGGACCCCAGACCACTTCGTGACCTTCGGCGTTTGTCTGAATTTCGGAGATAGGGGCACCTTAACGTGAGCGGATCGCTCGGCTTGAGTGTCAATCAATCCGTCGATAGCGTTTGTCTCAAACTCCCCGATAGATGCTACGGAAGCCCACGCGGCGCTGTCTGTACTGCGTTTCCGTCCAAGTTGCCTGTGAGACAGGGGAGGAGTGATACTCACAAGTCTCGAGGGTTTGAGGGGTGCAGGCTAGTTGCATTCCCTGGCTGAACTCGTCGTCCTACTCCTTGATAGCACATCCTTAGTCCCAAACGCCTATACTCAAACATAATTTCCGCATGATACCCCCTTGTCACAGGCTAAGTCACAGGC"/>
+    </data>
+
+    <map name="Uniform" >beast.base.inference.distribution.Uniform</map>
+
+    <map name="Exponential" >beast.base.inference.distribution.Exponential</map>
+
+    <map name="LogNormal" >beast.base.inference.distribution.LogNormalDistributionModel</map>
+
+    <map name="Normal" >beast.base.inference.distribution.Normal</map>
+
+    <map name="Beta" >beast.base.inference.distribution.Beta</map>
+
+    <map name="Gamma" >beast.base.inference.distribution.Gamma</map>
+
+    <map name="LaplaceDistribution" >beast.base.inference.distribution.LaplaceDistribution</map>
+
+    <map name="prior" >beast.base.inference.distribution.Prior</map>
+
+    <map name="InverseGamma" >beast.base.inference.distribution.InverseGamma</map>
+
+    <map name="OneOnX" >beast.base.inference.distribution.OneOnX</map>
+
+    <run id="mcmc" spec="MCMC" chainLength="10000000">
+        <state id="state" spec="State" storeEvery="5000">
+            <tree id="Tree.t:template" spec="beast.base.evolution.tree.Tree" name="stateNode">
+                <trait id="dateTrait.t:template" spec="beast.base.evolution.tree.TraitSet" traitname="date" units="day" value="">
+                    <taxa id="TaxonSet.template" spec="TaxonSet">
+                        <alignment idref="template"/>
+                    </taxa>
+                </trait>
+                <taxonset idref="TaxonSet.template"/>
+            </tree>
+            <parameter id="clockRate.c:template" spec="parameter.RealParameter" lower="0.0" name="stateNode">1.0</parameter>
+            <parameter id="kappa.s:template" spec="parameter.RealParameter" lower="0.0" name="stateNode">2.0</parameter>
+            <parameter id="freqParameter.s:template" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
+            <parameter id="origin_BDSKY_Serial.t:template" spec="parameter.RealParameter" lower="0.0" name="stateNode" upper="Infinity">1000.0</parameter>
+            <parameter id="becomeUninfectiousRate_BDSKY_Serial.t:template" spec="parameter.RealParameter" lower="0.0" name="stateNode" upper="Infinity">1.0</parameter>
+            <parameter id="reproductiveNumber_BDSKY_Serial.t:template" spec="parameter.RealParameter" dimension="10" lower="0.0" name="stateNode" upper="Infinity">2.0</parameter>
+            <parameter id="samplingProportion_BDSKY_Serial.t:template" spec="parameter.RealParameter" lower="0.0" name="stateNode" upper="1.0">0.01</parameter>
+        </state>
+        <init id="RandomTree.t:template" spec="RandomTree" estimate="false" initial="@Tree.t:template" taxa="@template">
+            <populationModel id="ConstantPopulation0.t:template" spec="ConstantPopulation">
+                <parameter id="randomPopSize.t:template" spec="parameter.RealParameter" name="popSize">1.0</parameter>
+            </populationModel>
+        </init>
+        <distribution id="posterior" spec="CompoundDistribution">
+            <distribution id="prior" spec="CompoundDistribution">
+                <distribution id="BDSKY_Serial.t:template" spec="bdsky.evolution.speciation.BirthDeathSkylineModel" becomeUninfectiousRate="@becomeUninfectiousRate_BDSKY_Serial.t:template" origin="@origin_BDSKY_Serial.t:template" reproductiveNumber="@reproductiveNumber_BDSKY_Serial.t:template" samplingProportion="@samplingProportion_BDSKY_Serial.t:template" tree="@Tree.t:template"/>
+                <prior id="becomeUninfectiousRatePrior_BDSKY_Serial.t:template" name="distribution" x="@becomeUninfectiousRate_BDSKY_Serial.t:template">
+                    <LogNormal id="LogNormalDistributionModel.2" name="distr">
+                        <parameter id="RealParameter.10" spec="parameter.RealParameter" estimate="false" name="M">0.0</parameter>
+                        <parameter id="RealParameter.11" spec="parameter.RealParameter" estimate="false" name="S">1.0</parameter>
+                    </LogNormal>
+                </prior>
+                <prior id="ClockPrior.c:template" name="distribution" x="@clockRate.c:template">
+                    <Uniform id="Uniform.0" name="distr" upper="Infinity"/>
+                </prior>
+                <prior id="FrequenciesPrior.s:template" name="distribution" x="@freqParameter.s:template">
+                    <distr id="Dirichlet.0" spec="distribution.Dirichlet">
+                        <parameter id="RealParameter.7" spec="parameter.RealParameter" dimension="4" estimate="false" name="alpha">4.0 4.0 4.0 4.0</parameter>
+                    </distr>
+                </prior>
+                <prior id="KappaPrior.s:template" name="distribution" x="@kappa.s:template">
+                    <LogNormal id="LogNormalDistributionModel.1" name="distr">
+                        <parameter id="RealParameter.5" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                        <parameter id="RealParameter.6" spec="parameter.RealParameter" estimate="false" name="S">1.25</parameter>
+                    </LogNormal>
+                </prior>
+                <prior id="originPrior_BDSKY_Serial.t:template" name="distribution" x="@origin_BDSKY_Serial.t:template">
+                    <LogNormal id="LogNormalDistributionModel.4" name="distr">
+                        <parameter id="RealParameter.17" spec="parameter.RealParameter" estimate="false" name="M">-0.5</parameter>
+                        <parameter id="RealParameter.18" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">0.2</parameter>
+                    </LogNormal>
+                </prior>
+                <prior id="reproductiveNumberPrior_BDSKY_Serial.t:template" name="distribution" x="@reproductiveNumber_BDSKY_Serial.t:template">
+                    <LogNormal id="LogNormalDistributionModel.3" name="distr">
+                        <parameter id="RealParameter.12" spec="parameter.RealParameter" estimate="false" name="M">0.8</parameter>
+                        <parameter id="RealParameter.13" spec="parameter.RealParameter" estimate="false" name="S">0.5</parameter>
+                    </LogNormal>
+                </prior>
+                <prior id="samplingProportionPrior_BDSKY_Serial.t:template" name="distribution" x="@samplingProportion_BDSKY_Serial.t:template">
+                    <Beta id="Beta.1" name="distr">
+                        <parameter id="RealParameter.14" spec="parameter.RealParameter" estimate="false" name="alpha">2.0</parameter>
+                        <parameter id="RealParameter.15" spec="parameter.RealParameter" estimate="false" name="beta">1000.0</parameter>
+                    </Beta>
+                </prior>
+            </distribution>
+            <distribution id="likelihood" spec="CompoundDistribution" useThreads="true">
+                <distribution id="treeLikelihood.template" spec="ThreadedTreeLikelihood" data="@template" tree="@Tree.t:template">
+                    <siteModel id="SiteModel.s:template" spec="SiteModel">
+                        <parameter id="mutationRate.s:template" spec="parameter.RealParameter" estimate="false" lower="0.0" name="mutationRate">1.0</parameter>
+                        <parameter id="gammaShape.s:template" spec="parameter.RealParameter" estimate="false" lower="0.1" name="shape">1.0</parameter>
+                        <parameter id="proportionInvariant.s:template" spec="parameter.RealParameter" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                        <substModel id="hky.s:template" spec="HKY" kappa="@kappa.s:template">
+                            <frequencies id="estimatedFreqs.s:template" spec="Frequencies" frequencies="@freqParameter.s:template"/>
+                        </substModel>
+                    </siteModel>
+                    <branchRateModel id="StrictClock.c:template" spec="beast.base.evolution.branchratemodel.StrictClockModel" clock.rate="@clockRate.c:template"/>
+                </distribution>
+            </distribution>
+        </distribution>
+        <operator id="StrictClockRateScaler.c:template" spec="AdaptableOperatorSampler" weight="1.5">
+            <parameter idref="clockRate.c:template"/>
+            <operator id="AVMNOperator.template" spec="kernel.AdaptableVarianceMultivariateNormalOperator" allowNonsense="true" beta="0.05" burnin="400" initial="800" weight="0.1">
+                <transformations id="AVMNSumTransform.template" spec="operator.kernel.Transform$LogConstrainedSumTransform">
+                    <f idref="freqParameter.s:template"/>
+                </transformations>
+                <transformations id="AVMNLogTransform.template" spec="operator.kernel.Transform$LogTransform">
+                    <f idref="clockRate.c:template"/>
+                    <f idref="kappa.s:template"/>
+                </transformations>
+                <transformations id="AVMNNoTransform.template" spec="operator.kernel.Transform$NoTransform">
+                    <f idref="Tree.t:template"/>
+                </transformations>
+            </operator>
+            <operator id="StrictClockRateScalerX.c:template" spec="kernel.BactrianScaleOperator" parameter="@clockRate.c:template" upper="10.0" weight="3.0"/>
+        </operator>
+        <operator id="strictClockUpDownOperator.c:template" spec="AdaptableOperatorSampler" weight="1.5">
+            <parameter idref="clockRate.c:template"/>
+            <tree idref="Tree.t:template"/>
+            <operator idref="AVMNOperator.template"/>
+            <operator id="strictClockUpDownOperatorX.c:template" spec="operator.kernel.BactrianUpDownOperator" scaleFactor="0.75" weight="3.0">
+                <up idref="clockRate.c:template"/>
+                <down idref="Tree.t:template"/>
+            </operator>
+        </operator>
+        <operator id="KappaScaler.s:template" spec="AdaptableOperatorSampler" weight="0.05">
+            <parameter idref="kappa.s:template"/>
+            <operator idref="AVMNOperator.template"/>
+            <operator id="KappaScalerX.s:template" spec="kernel.BactrianScaleOperator" parameter="@kappa.s:template" scaleFactor="0.1" upper="10.0" weight="0.1"/>
+        </operator>
+        <operator id="FrequenciesExchanger.s:template" spec="AdaptableOperatorSampler" weight="0.05">
+            <parameter idref="freqParameter.s:template"/>
+            <operator idref="AVMNOperator.template"/>
+            <operator id="FrequenciesExchangerX.s:template" spec="operator.kernel.BactrianDeltaExchangeOperator" delta="0.01" weight="0.1">
+                <parameter idref="freqParameter.s:template"/>
+            </operator>
+        </operator>
+        <operator id="BDSKY_SerialBICEPSEpochTop.t:template" spec="EpochFlexOperator" scaleFactor="0.1" tree="@Tree.t:template" weight="2.0"/>
+        <operator id="BDSKY_SerialBICEPSEpochAll.t:template" spec="EpochFlexOperator" fromOldestTipOnly="false" scaleFactor="0.1" tree="@Tree.t:template" weight="2.0"/>
+        <operator id="BDSKY_SerialBICEPSTreeFlex.t:template" spec="TreeStretchOperator" scaleFactor="0.01" tree="@Tree.t:template" weight="2.0"/>
+        <operator id="BDSKY_SerialTreeRootScaler.t:template" spec="kernel.BactrianScaleOperator" rootOnly="true" scaleFactor="0.1" tree="@Tree.t:template" upper="10.0" weight="3.0"/>
+        <operator id="BDSKY_SerialUniformOperator.t:template" spec="kernel.BactrianNodeOperator" tree="@Tree.t:template" weight="30.0"/>
+        <operator id="BDSKY_SerialSubtreeSlide.t:template" spec="kernel.BactrianSubtreeSlide" tree="@Tree.t:template" weight="15.0"/>
+        <operator id="BDSKY_SerialNarrow.t:template" spec="Exchange" tree="@Tree.t:template" weight="15.0"/>
+        <operator id="BDSKY_SerialWide.t:template" spec="Exchange" isNarrow="false" tree="@Tree.t:template" weight="3.0"/>
+        <operator id="BDSKY_SerialWilsonBalding.t:template" spec="WilsonBalding" tree="@Tree.t:template" weight="3.0"/>
+        <operator id="becomeUninfectiousRateScaler_BDSKY_Serial.t:template" spec="ScaleOperator" parameter="@becomeUninfectiousRate_BDSKY_Serial.t:template" weight="2.0"/>
+        <operator id="reproductiveNumberScaler_BDSKY_Serial.t:template" spec="ScaleOperator" parameter="@reproductiveNumber_BDSKY_Serial.t:template" weight="10.0"/>
+        <operator id="samplingProportionScaler_BDSKY_Serial.t:template" spec="ScaleOperator" parameter="@samplingProportion_BDSKY_Serial.t:template" weight="10.0"/>
+        <operator id="updownBD_BDSKY_Serial.t:template" spec="operator.UpDownOperator" scaleFactor="0.75" weight="2.0">
+            <up idref="reproductiveNumber_BDSKY_Serial.t:template"/>
+            <down idref="becomeUninfectiousRate_BDSKY_Serial.t:template"/>
+        </operator>
+        <operator id="origScaler_BDSKY_Serial.t:template" spec="ScaleOperator" parameter="@origin_BDSKY_Serial.t:template" weight="1.0"/>
+        <logger id="tracelog" spec="Logger" fileName="$(filebase).log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+            <log idref="posterior"/>
+            <log idref="likelihood"/>
+            <log idref="prior"/>
+            <log idref="treeLikelihood.template"/>
+            <log id="TreeHeight.t:template" spec="beast.base.evolution.tree.TreeStatLogger" tree="@Tree.t:template"/>
+            <log idref="clockRate.c:template"/>
+            <log idref="kappa.s:template"/>
+            <log idref="freqParameter.s:template"/>
+            <log idref="BDSKY_Serial.t:template"/>
+            <log idref="origin_BDSKY_Serial.t:template"/>
+            <log idref="becomeUninfectiousRate_BDSKY_Serial.t:template"/>
+            <log idref="reproductiveNumber_BDSKY_Serial.t:template"/>
+            <log idref="samplingProportion_BDSKY_Serial.t:template"/>
+        </logger>
+        <logger id="screenlog" spec="Logger" logEvery="1000">
+            <log idref="posterior"/>
+            <log idref="likelihood"/>
+            <log idref="prior"/>
+        </logger>
+        <logger id="treelog.t:template" spec="Logger" fileName="$(filebase)-$(tree).trees" logEvery="1000" mode="tree">
+            <log id="TreeWithMetaDataLogger.t:template" spec="beast.base.evolution.TreeWithMetaDataLogger" tree="@Tree.t:template"/>
+        </logger>
+        <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+    </run>
+
+</beast>

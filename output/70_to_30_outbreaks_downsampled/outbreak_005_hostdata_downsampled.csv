@@ -1,0 +1,5 @@
+"X","host_id","group","infector_id","infector_group","exposure_time","infectious_time","recovery_time"
+6,104,1,8676,1,2,3,9
+7,3878,1,9989,1,3,6,11
+9,689,1,9989,1,4,5,11
+10,4331,1,3878,1,9,12,16
