@@ -6,6 +6,7 @@ methods to estimate time-varying reproduction numbers using genomic
 and epidemiological data*, available at 
 https://www.medrxiv.org/content/10.1101/2025.09.25.25336592v1.
 
+## Code
 In the codes folder, you'll find the following R files: 
 
 auto_simulator.R: Generates outbreak data (linelist and FASTA files). You can specify
@@ -28,6 +29,7 @@ auto_process_plots.R: Post-processes results and generates plots.
 building-intuition.R: Helps build intuition for understanding how DTW
 works
 
+## Outputs
 In the output folder there are folders with csv files corresponding to
 simulated outbreaks in the paper. 
 
@@ -40,8 +42,24 @@ downsampling.
 
 Other folders are similar. 
 
-DTW_Alignment_Plots.pdf (and ..XXX.pdf, too) has examples to illustrate the DTW plot
+## Figures 
+
+DTW_Alignment_Plots.pdf has examples to illustrate the DTW plot
 approach (Figure 2 of the preprint). 
+
+### Guide to figures in the paper and their filenames
+
+Scenario A: optimum_combined_5plots
+
+Scenario B: 70perc_combined_5plots
+
+Scenario C: 10_combined_5plots
+
+Scenario D: 10_to_70_combined_5plots
+
+Scenario E: 70_to_10_combined_5plots
+
+Figure 8: rsme_combined_plots (bar plots)
 
 
 
