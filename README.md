@@ -1,7 +1,7 @@
 # Rt-cases-seqs
 Rt from sequences vs case counts: simulation-based comparisons
 
-This repo contains code and notes relating to the preprint *Comparing
+This repo contains code and simulated outbreaks relating to the preprint *Comparing
 methods to estimate time-varying reproduction numbers using genomic
 and epidemiological data*, available at 
 https://www.medrxiv.org/content/10.1101/2025.09.25.25336592v1.
