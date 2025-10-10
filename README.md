@@ -29,6 +29,9 @@ auto_process_plots.R: Post-processes results and generates plots.
 building-intuition.R: Helps build intuition for understanding how DTW
 works
 
+In the main folder there are two R files, sequences-beast-setup.R and sequences-beast-collectRt.R, which set up
+and then collect (respectively) the BEAST-based Rt estimates using the simulated sequences and the template.xml file. 
+
 ## Outputs
 In the output folder there are folders with csv files corresponding to
 simulated outbreaks in the paper. 
