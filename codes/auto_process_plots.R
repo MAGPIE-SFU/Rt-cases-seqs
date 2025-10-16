@@ -285,7 +285,7 @@ process_csv_files <- function(outbreak_dir, trueRt_dir, seqEstim_dir, epiEstim_d
 
 
 # specify directory here
-outbreak_dir <- "output/gen_incid_seventyperc_outbreaks"
+outbreak_dir <- "output/gen_incid_seventyperc_outbreaks" 
 trueRt_dir <- "output/Rt_practical"
 seqEstim_dir <- "output/seqRt_70perc"
 epiEstim_dir <- "output/seventyperc_EPiEstim_Rt"
@@ -421,12 +421,8 @@ combined_plot <- grid.arrange(
 
 
 
-
-
-
-
 # Save the combined plot as a PDF
-ggsave("rsme_combined_plots.pdf", plot = combined_plot, width = 12, height = 10)
+ggsave("rmse_combined_plots.pdf", plot = combined_plot, width = 12, height = 10)
 
 
 

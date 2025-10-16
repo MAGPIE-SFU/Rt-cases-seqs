@@ -2,7 +2,7 @@
 ###library(pracma)
 #smoothed_rt <- movavg(rt_data, n = 7, type = "s")
 library(pracma)
-source("data/Rt-fromData.R")
+source("Rt-fromData.R") #load script containing fuction 'Inf_process_host_data_Rt_modified'
 
 
 
@@ -58,17 +58,6 @@ for (file_path in file_list) {
   # Save the result to a new .csv file
   write.csv(pract_Rt, file = output_file_name, row.names = FALSE)
 }
-
-
-
-
-##outbreak_1_test_daily <- Inf_process_host_data_Rt_modified("~/Downloads/Rt-project/elisha_siavash/data_outbreaks/outbreak_014_hostdata.csv")
-
-#epiRTtest <- read.csv("EPiEstim_Rt/outbreak_014_hostdata_incid_EpiEstimRt.csv")
-plot(pract_Rt$Rt_day_avg)
-lines(pract_Rt$smoothRt_day_avg, type ="p" , col="red")
-#lines(filtered_rt,type ="p" , col="green")
-#lines(epiRTtest$Median.R., type ="p" , col="blue")
 
 
 
