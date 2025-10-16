@@ -12,7 +12,9 @@ In the codes folder, you'll find the following R files:
 auto_simulator.R: Generates outbreak data (linelist and FASTA files). You can specify
 the number of outbreaks and other OOpidemic input parameters.
 
-auto_practRt.R: Calculates the true Rt from the linelist.
+Rt-fromData.R: Contains function to calculate the true Rt from the linelist for a single .outbreak. Sourced from auto_practRt.R
+
+auto_practRt.R: Calculates the true Rt from the linelist for all the outbreaks. 
 
 auto_genTime_Incid.R: Calculates generation times and incidence from
 the linelist.
@@ -27,7 +29,7 @@ downsampling.
 auto_process_plots.R: Post-processes results and generates plots.
 
 building-intuition.R: Helps build intuition for understanding how DTW
-works
+works. This is used to generate Figure 2 of the preprint
 
 In the main folder there are two R files, sequences-beast-setup.R and sequences-beast-collectRt.R, which set up
 and then collect (respectively) the BEAST-based Rt estimates using the simulated sequences and the template.xml file. 
