@@ -389,11 +389,11 @@ plot_med_rmse <- ggplot(df_plot, aes(x = Scenario, y = RMSE, fill = Metric)) +
 
 
 # You can use `readRDS()` to load the RSD plots that were saved as R objects
-rsd_optimal <- readRDS("~/Desktop/sfu-Downloads/Rt-project/elisha_siavash/figures_optimal/rmse_optim.rds")
-rds_70perc <- readRDS("~/Desktop/sfu-Downloads/Rt-project/elisha_siavash/figures_70perc/rmse_70perc.rds" )
-rsd_10perc <- readRDS("~/Desktop/sfu-Downloads/Rt-project/elisha_siavash/figures_10perc/rmse_10perc.rds")
-rsd_10_to_70 <- readRDS("~/Desktop/sfu-Downloads/Rt-project/elisha_siavash/figures_10_to_70/rmse_10_to_70.rds")
-rsd_70_to_10 <- readRDS("~/Desktop/sfu-Downloads/Rt-project/elisha_siavash/figures_70_to_10/rmse_70_to_10.rds")
+rsd_optimal <- readRDS("output/figures_optimal/rmse_optim.rds")
+rds_70perc <- readRDS("output/figures_70perc/rmse_70perc.rds" )
+rsd_10perc <- readRDS("output/figures_10perc/rmse_10perc.rds")
+rsd_10_to_70 <- readRDS("output/figures_10_to_70/rmse_10_to_70.rds")
+rsd_70_to_10 <- readRDS("output/figures_70_to_10/rmse_70_to_10.rds")
 rds_plot_med_rsme <- readRDS("plot_med_rmse.rds")
 # Combine the plots into a grid and add labels
 common_ylim <- c(0, 0.5) 
@@ -422,7 +422,7 @@ combined_plot <- grid.arrange(
 
 
 # Save the combined plot as a PDF
-ggsave("rmse_combined_plots.pdf", plot = combined_plot, width = 12, height = 10)
+# ggsave("rmse_combined_plots.pdf", plot = combined_plot, width = 12, height = 10)
 
 
 
