@@ -259,20 +259,22 @@ process_csv_files <- function(outbreak_dir, trueRt_dir, seqEstim_dir, epiEstim_d
   output_csv <- paste0(output_dir, "/results.csv")
   results_df <- process_all_groups(matched_groups, output_csv)
   
-  # Determine last group index
+  # Determine last group index 
   num_groups_to_process <- length(matched_groups)
   
-  # Process each group of matched files and modify x-axis label conditionally
+  # Build plots, suppress legends for all but the last
   all_plots <- lapply(seq_along(matched_groups), function(i) {
     result <- process_group(matched_groups[[i]], list())
-    
-    # Apply x-axis label only to the last group
     if (i == num_groups_to_process) {
-      return(result$row_plot + labs(x = "Time"))  # Keep x-axis label only for last plot
+      # Keep legend on the last row; keep x label on last row only
+      result$row_plot + labs(x = "Time")
     } else {
-      return(result$row_plot + theme(axis.title.x = element_blank()))  # Remove x-labels for others
+      # Suppress legend + remove x label on earlier rows
+      (result$row_plot & theme(legend.position = "none")) +
+        theme(axis.title.x = element_blank())
     }
   })
+  
   
   # Arrange all plots into a single grid with 3 plots per row (one row per scenario)
   combined_plots <- wrap_plots(all_plots, ncol = 1)
