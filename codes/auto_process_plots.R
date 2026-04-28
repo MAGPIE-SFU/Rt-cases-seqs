@@ -73,6 +73,17 @@ process_group <- function(group, results_list) {
   # Extract the scenario number
   scenario_number <- group$number
   
+  # Try to extract switch_time from the seqEstim filename (e.g. "time_68")
+  switch_time_match <- regmatches(
+    basename(group$seqEstim),
+    regexpr("_time_(\\d+)_", basename(group$seqEstim))
+  )
+  switch_time <- if (length(switch_time_match) > 0) {
+    as.numeric(sub("_time_(\\d+)_", "\\1", switch_time_match))
+  } else {
+    NULL
+  }
+  
   # Print file paths for debugging
   print(paste("Processing files:", group$outbreak, group$trueRt, group$seqEstim, group$epiEstim))
   
@@ -141,6 +152,9 @@ process_group <- function(group, results_list) {
   # Plot histogram for outbreak data
   plot_outbreak <- ggplot(outbreak_data, aes(x = infectious_time, y = incidence)) +
     geom_bar(stat = "identity", fill = "dodgerblue4", alpha = 0.8) +
+    { if (!is.null(switch_time))
+        geom_vline(xintercept = switch_time, linetype = "dashed", color = "gray40", linewidth = 0.8)
+    } +
     labs(x = "Days", y = "Case Count") +
     theme_minimal()
   
@@ -151,6 +165,9 @@ process_group <- function(group, results_list) {
     geom_ribbon(data = seq_data, aes(x = time, ymin = lower, ymax = upper, fill = "sequence-Rt"), alpha = 0.4) +
     geom_line(data = seq_data, aes(x = time, y = med, color = "sequence-Rt"), size = 1) +
     geom_point(data = true_data, aes(x = infectious_time, y = smoothRt_day_avg, colour = "true-Rt"), size = 1) +
+    { if (!is.null(switch_time))
+        geom_vline(xintercept = switch_time, linetype = "dashed", color = "gray40", linewidth = 0.8)
+    } +
     labs(x = "Time ", y = "Rt Value") +
     theme_minimal() +
     theme(plot.title = element_text(hjust = 0.5)) +
@@ -279,7 +296,7 @@ process_csv_files <- function(outbreak_dir, trueRt_dir, seqEstim_dir, epiEstim_d
   # Arrange all plots into a single grid with 3 plots per row (one row per scenario)
   combined_plots <- wrap_plots(all_plots, ncol = 1)
   
-  output_file_name <- paste0(output_dir, "/70perc_combined_plots.pdf")#update
+  output_file_name <- paste0(output_dir, "/combined_plots.pdf")
   # Save the combined plot with optimized dimensions
   num_rows <- ceiling(length(all_plots) / 3)
   ggsave(output_file_name, plot = combined_plots, width = 15, height = 10 * num_rows, limitsize = FALSE)
@@ -293,6 +310,16 @@ seqEstim_dir <- "output/seqRt_70perc"
 epiEstim_dir <- "output/seventyperc_EPiEstim_Rt"
 output_dir <- "output/figures_70perc"
 process_csv_files(outbreak_dir, trueRt_dir, seqEstim_dir, epiEstim_dir, output_dir, num_groups =20)
+
+# High-to-low sampling scenario (70% -> 10% at per-outbreak switch time)
+# The switch time is encoded in each seqRt_high_to_low filename (e.g. _time_68_)
+# and is automatically extracted by process_group to draw the transition marker.
+outbreak_dir_h2l <- "output/gen_incid_70_to_10_outbreaks"
+trueRt_dir_h2l   <- "output/Rt_practical"
+seqEstim_dir_h2l <- "output/seqRt_high_to_low"
+epiEstim_dir_h2l <- "output/70_to_10_EPiEstim_Rt"
+output_dir_h2l   <- "output/figures_70_to_10"
+# process_csv_files(outbreak_dir_h2l, trueRt_dir_h2l, seqEstim_dir_h2l, epiEstim_dir_h2l, output_dir_h2l)
 
 result <- read.csv("output/figures_70perc/results.csv")
 
